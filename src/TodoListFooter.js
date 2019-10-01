@@ -2,6 +2,10 @@ import React from 'react';
 import './App.css';
 
 class TodoListFooter extends React.Component {
+    onFilterChange =(newFilterValue)=> {
+        this.props.changeFilter(newFilterValue)
+    }
+
     render = () => {
 
         let classForAll=this.props.filterValue==="All"? "filterActive" : ""
@@ -10,9 +14,9 @@ class TodoListFooter extends React.Component {
 
         return (
             <div className="todoList-footer">
-                <button className={classForAll}>All</button>
-                <button className={classForCompleted}>Completed</button>
-                <button className={classForActive}>Active</button>
+                <button onClick={()=> {this.onFilterChange("All")}} className={classForAll}>All</button>
+                <button onClick={()=> {this.onFilterChange("Completed")}} className={classForCompleted}>Completed</button>
+                <button onClick={()=> {this.onFilterChange("Active")}} className={classForActive}>Active</button>
             </div>
 
         );

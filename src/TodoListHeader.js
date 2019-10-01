@@ -3,8 +3,10 @@ import './App.css';
 
 class TodoListHeader extends React.Component {
 
-
-
+ //
+ // onAddTask = () => {
+ //     this.props.addTask()
+ // }
 
 
     render = () => {
