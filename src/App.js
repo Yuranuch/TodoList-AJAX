@@ -13,18 +13,26 @@ class App extends React.Component {
             {title:"CSS", isDone:true, priority:"Low"},
             {title:"HTML", isDone:false, priority:"High"},
         ],
-        filterValue : "Completed"
+        filterValue : "Completed",
+        taskValue: "Yura"
     }
 
 
 
-    addTaskClick = () => {
-       let newTask={title:"JS", isDone:true, priority:"High"}
+    addTask = () => {
+       let newTask={title:this.state.taskValue, isDone:true, priority:"High"}
        let newTasks = [...this.state.tasks, newTask]
         this.setState({
             tasks : newTasks
         })
     }
+
+    changeTaskValue = (newValue) => {
+        this.setState({
+            taskValue: newValue
+        })
+    }
+
     changeFilter = (newFilterValue) => {
         this.setState({
             filterValue : newFilterValue
@@ -36,16 +44,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <div className="todoList">
-                    <div className="todoList-header">
-                        <h3 className="todoList-header__title">What to Learn</h3>
-                        <div className="todoList-newTaskForm">
-                            <input type="text" placeholder="New task name"/>
-                            <button onClick={this.addTaskClick}>Add</button>
-                        </div>
-                    </div>
-
-
-                    {/*<TodoListHeader addTask={this.addTask}/>*/}
+                    <TodoListHeader changeTaskValue={this.changeTaskValue} taskValue={this.state.taskValue} addTask={this.addTask}/>
                     <TodoListTasks tasks={this.state.tasks}/>
                     <TodoListFooter changeFilter={this.changeFilter}  filterValue={this.state.filterValue}/>
                 </div>
