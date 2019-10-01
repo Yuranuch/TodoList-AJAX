@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import TodoListTasks from "./TodoListTasks";
 import TodoListFooter from "./TodoListFooter";
-import TodoListHeader from "./TodoListHeader";
+import TodoListTitle from "./TodoListTitle";
+import AddNewItemForm from "./AddNewItemForm";
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -22,7 +23,6 @@ class TodoList extends React.Component {
     }
 
     saveState = () => {
-        debugger
         let stateAsString = JSON.stringify(this.state);
         localStorage.setItem("our-state"+this.props.id, stateAsString)
     }
@@ -41,7 +41,7 @@ class TodoList extends React.Component {
         this.setState(state)
     }
 
-    addTask = () => {
+    addItem = () => {
         let newTask = {id: this.state.nextTaskId++, title: this.state.taskValue, isDone: true, priority: "High"}
         let newTasks = [...this.state.tasks, newTask]
         this.setState({
@@ -84,8 +84,13 @@ class TodoList extends React.Component {
         return (
             <div className="App">
                 <div className="todoList">
-                    <TodoListHeader changeTaskValue={this.changeTaskValue} taskValue={this.state.taskValue}
-                                    addTask={this.addTask}/>
+                    <TodoListTitle title={this.props.title}/>
+                    <AddNewItemForm
+                        changeTaskValue={this.changeTaskValue}
+                        taskValue={this.state.taskValue}
+                        addItem={this.addItem}
+                    />
+
                     <TodoListTasks
                         changeTitle={this.changeTitle}
                         changeStatus={this.changeStatus}

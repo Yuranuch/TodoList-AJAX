@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
 
-class TodoListHeader extends React.Component {
+class AddNewItemForm extends React.Component {
 
     state = {
         error: false
     }
-    onAddTask = () => {
-
+    onAddItem = () => {
         if(!this.props.taskValue) {
             this.setState({
                 error: true
@@ -16,10 +15,10 @@ class TodoListHeader extends React.Component {
             this.setState({
                 error: false
             })
-            this.props.addTask()
+            this.props.addItem()
         }
     }
-    onTaskChange = (e) => {
+    onItemChange = (e) => {
         let newValue = e.currentTarget.value
         this.props.changeTaskValue(newValue)
         this.setState({
@@ -28,7 +27,7 @@ class TodoListHeader extends React.Component {
     }
     onKeyPress = (e) => {
         if(e.key==="Enter") {
-            this.props.addTask()
+            this.props.addItem()
         }
     }
 
@@ -36,14 +35,13 @@ class TodoListHeader extends React.Component {
         let classForError=this.state.error? "error": ""
         return (
             <div className="todoList-header">
-                <h3 className="todoList-header__title">What to Learn</h3>
                 <div className="todoList-newTaskForm">
-                    <input onKeyPress={this.onKeyPress} className={classForError} value={this.props.taskValue} onChange={this.onTaskChange} type="text" placeholder="New task name"/>
-                    <button onClick={this.onAddTask}>Add</button>
+                    <input onKeyPress={this.onKeyPress} className={classForError} value={this.props.taskValue} onChange={this.onItemChange} type="text" placeholder="New task name"/>
+                    <button onClick={this.onAddItem}>Add</button>
                 </div>
             </div>
         );
     }
 }
 
-export default TodoListHeader;
+export default AddNewItemForm;
