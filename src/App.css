@@ -17,3 +17,10 @@
 .filterActive {
   background-color: blue;
 }
+.error {
+  border: 3px solid red;
+  background-color: rosybrown;
+}
+.done {
+  opacity: 0.5;
+}

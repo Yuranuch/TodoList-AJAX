@@ -14,13 +14,14 @@ class App extends React.Component {
             {id: 3, title:"HTML", isDone:false, priority:"High"},
         ],
         filterValue : "All",
-        taskValue: "Yura"
+        taskValue: "",
+        nextTaskId: 4
     }
 
 
 
     addTask = () => {
-       let newTask={title:this.state.taskValue, isDone:true, priority:"High"}
+       let newTask={id: this.state.nextTaskId++,title:this.state.taskValue, isDone:true, priority:"High"}
        let newTasks = [...this.state.tasks, newTask]
         this.setState({
             tasks : newTasks
