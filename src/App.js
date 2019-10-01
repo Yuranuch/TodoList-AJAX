@@ -15,7 +15,7 @@ class App extends React.Component {
         ],
         filterValue : "All",
         taskValue: "",
-        nextTaskId: 4
+        nextTaskId: 4,
     }
 
 
@@ -51,6 +51,19 @@ class App extends React.Component {
         })
     }
 
+    changeTitle = (taskId, newTitle) => {
+        let newTasks=this.state.tasks.map(t=> {
+            if(t.id===taskId) {
+                return {...t, title: newTitle}
+            } else {
+                return t
+            }
+        })
+        this.setState({
+            tasks: newTasks
+        })
+    }
+
 
     render = () => {
         return (
@@ -58,6 +71,7 @@ class App extends React.Component {
                 <div className="todoList">
                     <TodoListHeader changeTaskValue={this.changeTaskValue} taskValue={this.state.taskValue} addTask={this.addTask}/>
                     <TodoListTasks
+                        changeTitle={this.changeTitle}
                         changeStatus={this.changeStatus}
                         tasks={this.state.tasks.filter(t=> {
                         if (this.state.filterValue === "All") {
