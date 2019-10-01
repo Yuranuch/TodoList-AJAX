@@ -8,10 +8,10 @@ class App extends React.Component {
 
     state = {
         tasks : [
-            {title:"React", isDone:true, priority:"High"},
-            {title:"JS", isDone:true, priority:"High"},
-            {title:"CSS", isDone:true, priority:"Low"},
-            {title:"HTML", isDone:false, priority:"High"},
+            {id: 0, title:"React", isDone:true, priority:"High"},
+            {id: 1, title:"JS", isDone:true, priority:"High"},
+            {id: 2, title:"CSS", isDone:true, priority:"Low"},
+            {id: 3, title:"HTML", isDone:false, priority:"High"},
         ],
         filterValue : "All",
         taskValue: "Yura"
@@ -39,8 +39,15 @@ class App extends React.Component {
         })
     }
 
-    changeStatus = (status) => {
-        alert(status)
+    changeStatus = (taskId, status) => {
+        let newTasks = this.state.tasks.map (t=> {
+            if(t.id===taskId){
+                return{...t, isDone: status }
+            }else return t
+        })
+        this.setState({
+            tasks: newTasks
+        })
     }
 
 
