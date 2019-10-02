@@ -8,8 +8,9 @@ class App extends React.Component {
    state = {
        todolists : [
            {id: 0, title: "React"},
-           {id: 1, title: "Sport"},
-           {id: 2, title: "JS"}
+           {id: 1, title: "HTML"},
+           {id: 2, title: "JS"},
+           {id: 2, title: "CSS"}
        ],
        nextTodoListId: 3,
        taskValue: "",
