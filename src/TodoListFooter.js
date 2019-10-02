@@ -7,15 +7,15 @@ class TodoListFooter extends React.Component {
         isHidden: false
     }
 
-    onFilterChange =(newFilterValue)=> {
+    onFilterChange = (newFilterValue) => {
         this.props.changeFilter(newFilterValue)
     }
-    onHidden =()=> {
+    onHidden = () => {
         this.setState({
             isHidden: true
         })
     }
-    onShow =()=> {
+    onShow = () => {
         this.setState({
             isHidden: false
         })
@@ -23,19 +23,28 @@ class TodoListFooter extends React.Component {
 
     render = () => {
 
-        let classForAll=this.props.filterValue==="All"? "filterActive" : ""
-        let classForCompleted=this.props.filterValue==="Completed"? "filterActive" : ""
-        let classForActive=this.props.filterValue==="Active"? "filterActive" : ""
+        let classForAll = this.props.filterValue === "All" ? "filterActive" : ""
+        let classForCompleted = this.props.filterValue === "Completed" ? "filterActive" : ""
+        let classForActive = this.props.filterValue === "Active" ? "filterActive" : ""
 
         return (
             <div className="todoList-footer">
-                {!this.state.isHidden&&<div>
-                <button onClick={()=> {this.onFilterChange("All")}} className={classForAll}>All</button>
-                <button onClick={()=> {this.onFilterChange("Completed")}} className={classForCompleted}>Completed</button>
-                <button onClick={()=> {this.onFilterChange("Active")}} className={classForActive}>Active</button>
+                {!this.state.isHidden && <div>
+                    <button onClick={() => {
+                        this.onFilterChange("All")
+                    }} className={classForAll}>All
+                    </button>
+                    <button onClick={() => {
+                        this.onFilterChange("Completed")
+                    }} className={classForCompleted}>Completed
+                    </button>
+                    <button onClick={() => {
+                        this.onFilterChange("Active")
+                    }} className={classForActive}>Active
+                    </button>
                 </div>}
-                {!this.state.isHidden?<span onClick={this.onHidden}>Hide</span>
-                    :<span onClick={this.onShow}>Show</span>}
+                {!this.state.isHidden ? <span onClick={this.onHidden}>Hide</span>
+                    : <span onClick={this.onShow}>Show</span>}
             </div>
 
 

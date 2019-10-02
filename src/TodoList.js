@@ -24,7 +24,7 @@ class TodoList extends React.Component {
 
     saveState = () => {
         let stateAsString = JSON.stringify(this.state);
-        localStorage.setItem("our-state"+this.props.id, stateAsString)
+        localStorage.setItem("our-state" + this.props.id, stateAsString)
     }
 
     restoreState = () => {
@@ -34,7 +34,7 @@ class TodoList extends React.Component {
             taskValue: "",
             nextTaskId: 0,
         }
-        let stateAsString = localStorage.getItem("our-state"+this.props.id)
+        let stateAsString = localStorage.getItem("our-state" + this.props.id)
         if (stateAsString != null) {
             state = JSON.parse(stateAsString)
         }
@@ -46,19 +46,25 @@ class TodoList extends React.Component {
         let newTasks = [...this.state.tasks, newTask]
         this.setState({
             tasks: newTasks
-        }, ()=> {this.saveState()})
+        }, () => {
+            this.saveState()
+        })
     }
 
     changeTaskValue = (newValue) => {
         this.setState({
             taskValue: newValue
-        }, ()=> {this.saveState()})
+        }, () => {
+            this.saveState()
+        })
     }
 
     changeFilter = (newFilterValue) => {
         this.setState({
             filterValue: newFilterValue
-        }, ()=> {this.saveState()})
+        }, () => {
+            this.saveState()
+        })
     }
 
     changeTask = (taskId, obj) => {
@@ -69,7 +75,9 @@ class TodoList extends React.Component {
         })
         this.setState({
             tasks: newTasks
-        }, ()=> {this.saveState()})
+        }, () => {
+            this.saveState()
+        })
     }
 
     changeStatus = (taskId, status) => {
