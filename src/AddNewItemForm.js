@@ -4,10 +4,14 @@ import './App.css';
 class AddNewItemForm extends React.Component {
 
     state = {
-        error: false
+        error: false,
+        taskValue: "",
     }
+
+
     onAddItem = () => {
-        if (!this.props.taskValue) {
+        let newText=this.state.taskValue
+        if (!newText) {
             this.setState({
                 error: true
             })
@@ -15,14 +19,16 @@ class AddNewItemForm extends React.Component {
             this.setState({
                 error: false
             })
-            this.props.addItem()
+            this.props.addItem(newText)
         }
     }
+
     onItemChange = (e) => {
         let newValue = e.currentTarget.value
-        this.props.changeTaskValue(newValue)
+
         this.setState({
-            error: false
+            error: false,
+            taskValue: newValue
         })
     }
     onKeyPress = (e) => {
@@ -36,7 +42,7 @@ class AddNewItemForm extends React.Component {
         return (
             <div className="todoList-header">
                 <div className="todoList-newTaskForm">
-                    <input onKeyPress={this.onKeyPress} className={classForError} value={this.props.taskValue}
+                    <input onKeyPress={this.onKeyPress} className={classForError} value={this.state.taskValue}
                            onChange={this.onItemChange} type="text" placeholder="New task name"/>
                     <button onClick={this.onAddItem}>Add</button>
                 </div>

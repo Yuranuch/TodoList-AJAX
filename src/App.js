@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
+import {connect} from "react-redux";
 
 class App extends React.Component {
 
@@ -12,21 +13,17 @@ class App extends React.Component {
 
         ],
         nextTodoListId: 3,
-        taskValue: "",
+
     }
 
-    addItem = () => {
-        let newTodoList = {id: this.state.nextTodoListId++, title: this.state.taskValue}
+    addItem = (newText) => {
+        let newTodoList = {id: this.state.nextTodoListId++, title: newText}
         let todolistsCopy = [...this.state.todolists, newTodoList]
         this.setState({
             todolists: todolistsCopy
         })
     }
-    changeTaskValue = (newValue) => {
-        this.setState({
-            taskValue: newValue
-        })
-    }
+
 
     render = () => {
 
@@ -34,8 +31,6 @@ class App extends React.Component {
         return (
             <div>
                 <AddNewItemForm
-                    changeTaskValue={this.changeTaskValue}
-                    taskValue={this.state.taskValue}
                     addItem={this.addItem}/>
                 <div className="App">
                     {todolistElements}
@@ -44,6 +39,16 @@ class App extends React.Component {
         );
     }
 }
+const mapStateToProps = (state) => {
 
-export default App;
+    return {
+        nextTodoListId: state.nextTodoListId,
+        taskValue: state.taskValue,
+        todolists: state.todolists
+    }
+}
+
+const AppContainer = connect (mapStateToProps, null)(App)
+
+export default AppContainer;
 

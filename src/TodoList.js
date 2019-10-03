@@ -18,7 +18,7 @@ class TodoList extends React.Component {
             // {id: 3, title: "HTML", isDone: false, priority: "High"},
         ],
         filterValue: "All",
-        taskValue: "",
+        // taskValue: "",
         nextTaskId: 4,
     }
 
@@ -31,7 +31,7 @@ class TodoList extends React.Component {
         let state = {
             tasks: [],
             filterValue: "All",
-            taskValue: "",
+            // taskValue: "",
             nextTaskId: 0,
         }
         let stateAsString = localStorage.getItem("our-state" + this.props.id)
@@ -41,8 +41,8 @@ class TodoList extends React.Component {
         this.setState(state)
     }
 
-    addItem = () => {
-        let newTask = {id: this.state.nextTaskId++, title: this.state.taskValue, isDone: true, priority: "High"}
+    addItem = (newText) => {
+        let newTask = {id: this.state.nextTaskId++, title: newText, isDone: true, priority: "High"}
         let newTasks = [...this.state.tasks, newTask]
         this.setState({
             tasks: newTasks
@@ -51,13 +51,6 @@ class TodoList extends React.Component {
         })
     }
 
-    changeTaskValue = (newValue) => {
-        this.setState({
-            taskValue: newValue
-        }, () => {
-            this.saveState()
-        })
-    }
 
     changeFilter = (newFilterValue) => {
         this.setState({
@@ -95,8 +88,6 @@ class TodoList extends React.Component {
                     <TodoListTitle title={this.props.title}/>
                     <button>X</button>
                     <AddNewItemForm
-                        changeTaskValue={this.changeTaskValue}
-                        taskValue={this.state.taskValue}
                         addItem={this.addItem}
                     />
 
