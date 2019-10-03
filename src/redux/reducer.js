@@ -29,18 +29,26 @@ export const reducer = (state = initialState, action) => {
                 })
             }
         }
-
-            // let newTasks = this.state.tasks.map(t => {
-            //     if (t.id === taskId) {
-            //         return {...t, ...obj}
-            //     } else return t
-            // })
-            // this.setState({
-            //     tasks: newTasks
-            // }, () => {
-            //     this.saveState()
-            // })
-
+        case UPDATE_TASK:
+            return {
+                ...state,
+                todolists: state.todolists.map(tl => {
+                    if (tl.id === action.todolistId) {
+                        return {
+                            ...tl,
+                            tasks: tl.tasks.map(t => {
+                                if (t.id != action.taskId) {
+                                    return t;
+                                } else {
+                                    return {...t, ...action.obj};
+                                }
+                            })
+                        }
+                    } else {
+                        return tl
+                    }
+                })
+            }
 
 
     }
