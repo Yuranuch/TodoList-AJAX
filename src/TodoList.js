@@ -91,8 +91,9 @@ class TodoList extends React.Component {
     render = () => {
         return (
             <div className="App">
-                <div className="todoList"><span>X</span>
+                <div className="todoList">
                     <TodoListTitle title={this.props.title}/>
+                    <button>X</button>
                     <AddNewItemForm
                         changeTaskValue={this.changeTaskValue}
                         taskValue={this.state.taskValue}
