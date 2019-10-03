@@ -4,6 +4,8 @@ import TodoListTasks from "./TodoListTasks";
 import TodoListFooter from "./TodoListFooter";
 import TodoListTitle from "./TodoListTitle";
 import AddNewItemForm from "./AddNewItemForm";
+import {connect} from "react-redux";
+import {addTask, updateTask} from "./redux/reducer";
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -11,14 +13,7 @@ class TodoList extends React.Component {
     }
 
     state = {
-        tasks: [
-            // {id: 0, title: "React", isDone: true, priority: "High"},
-            // {id: 1, title: "JS", isDone: true, priority: "High"},
-            // {id: 2, title: "CSS", isDone: true, priority: "Low"},
-            // {id: 3, title: "HTML", isDone: false, priority: "High"},
-        ],
         filterValue: "All",
-        // taskValue: "",
         nextTaskId: 4,
     }
 
@@ -31,7 +26,6 @@ class TodoList extends React.Component {
         let state = {
             tasks: [],
             filterValue: "All",
-            // taskValue: "",
             nextTaskId: 0,
         }
         let stateAsString = localStorage.getItem("our-state" + this.props.id)
@@ -43,12 +37,7 @@ class TodoList extends React.Component {
 
     addItem = (newText) => {
         let newTask = {id: this.state.nextTaskId++, title: newText, isDone: true, priority: "High"}
-        let newTasks = [...this.state.tasks, newTask]
-        this.setState({
-            tasks: newTasks
-        }, () => {
-            this.saveState()
-        })
+        this.props.addTask(this.props.id, newTask)
     }
 
 
@@ -61,16 +50,20 @@ class TodoList extends React.Component {
     }
 
     changeTask = (taskId, obj) => {
-        let newTasks = this.state.tasks.map(t => {
-            if (t.id === taskId) {
-                return {...t, ...obj}
-            } else return t
-        })
-        this.setState({
-            tasks: newTasks
-        }, () => {
-            this.saveState()
-        })
+
+        // let newTasks = this.state.tasks.map(t => {
+        //     if (t.id === taskId) {
+        //         return {...t, ...obj}
+        //     } else return t
+        // })
+        // this.setState({
+        //     tasks: newTasks
+        // }, () => {
+        //     this.saveState()
+        // })
+        this.props.updateTask(taskId, obj, this.props.id)
+
+
     }
 
     changeStatus = (taskId, status) => {
@@ -94,7 +87,7 @@ class TodoList extends React.Component {
                     <TodoListTasks
                         changeTitle={this.changeTitle}
                         changeStatus={this.changeStatus}
-                        tasks={this.state.tasks.filter(t => {
+                        tasks={this.props.tasks.filter(t => {
                             if (this.state.filterValue === "All") {
                                 return t
                             }
@@ -112,5 +105,19 @@ class TodoList extends React.Component {
     }
 }
 
-export default TodoList;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTask: (todoListId, newTask) => {
+            dispatch(addTask(todoListId, newTask))
+        },
+        updateTask: (taskId, obj, todolistId) => {
+            dispatch(updateTask(taskId, obj, todolistId))
+        }
+    }
+}
+
+const TodoListContainer = connect (mapStateToProps, mapDispatchToProps)(TodoList)
+
+export default TodoListContainer;
 
