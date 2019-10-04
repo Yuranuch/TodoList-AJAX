@@ -45,6 +45,7 @@ class TodoListTask extends React.Component {
                         onChange={this.onChangeTitle}
                         type="text"
                         autoFocus={true}
+                        value={this.props.task.title}
                     />
                     :<span onClick={this.onEditMode}>{this.props.task.title}</span>}
 
