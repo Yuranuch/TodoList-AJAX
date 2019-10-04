@@ -11,7 +11,6 @@ class TodoList extends React.Component {
     componentDidMount() {
         this.restoreState()
     }
-
     state = {
         filterValue: "All",
         nextTaskId: 4,
@@ -40,7 +39,6 @@ class TodoList extends React.Component {
         this.props.addTask(this.props.id, newTask)
     }
 
-
     changeFilter = (newFilterValue) => {
         this.setState({
             filterValue: newFilterValue
@@ -50,20 +48,7 @@ class TodoList extends React.Component {
     }
 
     changeTask = (taskId, obj) => {
-
-        // let newTasks = this.state.tasks.map(t => {
-        //     if (t.id === taskId) {
-        //         return {...t, ...obj}
-        //     } else return t
-        // })
-        // this.setState({
-        //     tasks: newTasks
-        // }, () => {
-        //     this.saveState()
-        // })
         this.props.updateTask(taskId, obj, this.props.id)
-
-
     }
 
     changeStatus = (taskId, status) => {
@@ -105,7 +90,6 @@ class TodoList extends React.Component {
     }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addTask: (todoListId, newTask) => {
@@ -117,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const TodoListContainer = connect (null, mapDispatchToProps)(TodoList)
+const TodoListContainer = connect(null, mapDispatchToProps)(TodoList)
 
 export default TodoListContainer;
 
