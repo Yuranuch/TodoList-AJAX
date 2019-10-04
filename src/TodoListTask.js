@@ -21,7 +21,6 @@ class TodoListTask extends React.Component {
     deactivateEditMode = () => {
         this.setState({
             editMode: false,
-
         })
     }
     onChangeTitle = (e) => {
@@ -31,7 +30,6 @@ class TodoListTask extends React.Component {
     onDeleteTask = () => {
         this.props.onDeleteTask(this.props.task.id)
     }
-
 
     render = () => {
         let classForDone = this.props.task.isDone? "todoList-task done": "todoList-task"
