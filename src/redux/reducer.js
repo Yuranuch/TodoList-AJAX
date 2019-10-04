@@ -3,7 +3,7 @@ export const ADD_TASK = "ADD_TASK"
 export const UPDATE_TASK = "UPDATE_TASK"
 export const DELETE_TODOLIST = "DELETE_TODOLIST"
 export const DELETE_TASK = "DELETE_TASK"
-
+export const SET_TODOLISTS= "SET_TODOLISTS"
 
 const initialState = {
     todolists: [
@@ -66,6 +66,11 @@ export const reducer = (state = initialState, action) => {
                     }else { return tl}
                 })
             }
+        case SET_TODOLISTS:
+            return {
+                ...state,
+                todolists: action.newTodolists
+            }
 
 
     }
@@ -78,3 +83,5 @@ export const addTask = (todoListId, newTask) => ({type: ADD_TASK, todoListId, ne
 export const updateTask = (taskId, obj, todolistId) => ({type: UPDATE_TASK, taskId, obj, todolistId})
 export const deleteTodoList = (todolistId) => ({type:DELETE_TODOLIST,todolistId})
 export const deleteTask = (taskId, todolistId) => ({type: DELETE_TASK,taskId, todolistId})
+
+export const setTodolists= (newTodolists) => ({type:SET_TODOLISTS, newTodolists})

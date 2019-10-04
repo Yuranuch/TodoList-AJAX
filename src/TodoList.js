@@ -67,6 +67,7 @@ class TodoList extends React.Component {
     }
 
     render = () => {
+        let {tasks=[]}=this.props
         return (
             <div className="App">
                 <div className="todoList">
@@ -80,7 +81,7 @@ class TodoList extends React.Component {
                         changeTitle={this.changeTitle}
                         onDeleteTask={this.onDeleteTask}
                         changeStatus={this.changeStatus}
-                        tasks={this.props.tasks.filter(t => {
+                        tasks={tasks.filter(t => {
                             if (this.state.filterValue === "All") {
                                 return t
                             }
