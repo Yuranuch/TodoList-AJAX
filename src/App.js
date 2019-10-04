@@ -12,7 +12,7 @@ class App extends React.Component {
     }
 
     addItem = (newText) => {
-        let newTodoList = {id: this.props.nextTodoListId, title: newText}
+        let newTodoList = {id: this.props.nextTodoListId, title: newText, tasks:[]}
         this.props.addTodoList(newTodoList)
     }
 

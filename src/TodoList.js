@@ -5,7 +5,7 @@ import TodoListFooter from "./TodoListFooter";
 import TodoListTitle from "./TodoListTitle";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
-import {addTask, updateTask} from "./redux/reducer";
+import {addTask, deleteTodoList, updateTask} from "./redux/reducer";
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -59,12 +59,16 @@ class TodoList extends React.Component {
         this.changeTask(taskId, {title: newTitle})
     }
 
+    onDeleteTodoList = () => {
+        this.props.deleteTodoList(this.props.id)
+    }
+
     render = () => {
         return (
             <div className="App">
                 <div className="todoList">
                     <TodoListTitle title={this.props.title}/>
-                    <button>X</button>
+                    <button onClick={this.onDeleteTodoList}>X</button>
                     <AddNewItemForm
                         addItem={this.addItem}
                     />
@@ -97,6 +101,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateTask: (taskId, obj, todolistId) => {
             dispatch(updateTask(taskId, obj, todolistId))
+        },
+        deleteTodoList: (todolistId) => {
+            dispatch(deleteTodoList(todolistId))
         }
     }
 }
