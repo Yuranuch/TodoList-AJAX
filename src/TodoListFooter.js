@@ -10,6 +10,7 @@ class TodoListFooter extends React.Component {
     onFilterChange = (newFilterValue) => {
         this.props.changeFilter(newFilterValue)
     }
+
     onHidden = () => {
         this.setState({
             isHidden: true
