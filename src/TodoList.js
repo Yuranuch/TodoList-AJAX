@@ -36,8 +36,16 @@ class TodoList extends React.Component {
     }
 
     addItem = (newText) => {
-        let newTask = {id: this.state.nextTaskId++, title: newText, isDone: true, priority: "High"}
-        this.props.addTask(this.props.id, newTask)
+        axios.post(`https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`, {title: newText},
+            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+            .then (res => {
+                debugger
+                this.props.addTask(this.props.id, res.data.data.item)
+            })
+
+
+        // let newTask = {id: this.state.nextTaskId++, title: newText, isDone: true, priority: "High"}
+        // this.props.addTask(this.props.id, newTask)
     }
 
     changeFilter = (newFilterValue) => {
@@ -67,8 +75,6 @@ class TodoList extends React.Component {
             .then(res => {
                 this.props.deleteTodoList(this.props.id)
             })
-
-
     }
 
     onDeleteTask = (taskId) => {

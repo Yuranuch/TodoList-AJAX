@@ -69,7 +69,7 @@ export const reducer = (state = initialState, action) => {
         case SET_TODOLISTS:
             return {
                 ...state,
-                todolists: action.newTodolists
+                todolists: action.newTodolists.map(tl => ({...tl, tasks:[]}))
             }
 
 
