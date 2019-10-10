@@ -16,16 +16,18 @@ class App extends React.Component {
         nextTodoListId: 3,
     }
 
-    addItem = (newText) => {
-        let newTodoList = {id: this.props.nextTodoListId, title: newText, tasks:[]}
-        this.props.addTodoList(newTodoList)
+    addItem = (title) => {
+        axios.post("https://social-network.samuraijs.com/api/1.0/todo-lists", {title: title},
+            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+            .then (res => {
+                this.props.addTodoList(res.data.data.item)
+            })
     }
 
     restoreState = () => {
         axios.get("https://social-network.samuraijs.com/api/1.0/todo-lists",
             {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
             .then(res=> {
-                debugger
                 this.props.setTodolists(res.data)
             })
     }

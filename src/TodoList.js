@@ -6,6 +6,7 @@ import TodoListTitle from "./TodoListTitle";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
 import {addTask, deleteTask, deleteTodoList, updateTask} from "./redux/reducer";
+import * as axios from "axios";
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -60,8 +61,16 @@ class TodoList extends React.Component {
     }
 
     onDeleteTodoList = () => {
-        this.props.deleteTodoList(this.props.id)
+
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}`,
+            {withCredentials: true, headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+            .then(res => {
+                this.props.deleteTodoList(this.props.id)
+            })
+
+
     }
+
     onDeleteTask = (taskId) => {
         this.props.deleteTask(taskId, this.props.id)
     }
