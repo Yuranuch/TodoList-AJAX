@@ -5,6 +5,7 @@ import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
 import {addItem, addTodoList, setTodolists} from "./redux/reducer";
 import * as axios from "axios";
+import {api} from "./api";
 
 class App extends React.Component {
 
@@ -17,8 +18,7 @@ class App extends React.Component {
     }
 
     addItem = (title) => {
-        axios.post("https://social-network.samuraijs.com/api/1.0/todo-lists", {title: title},
-            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+       api.createTodoList (title)
             .then (res => {
                 this.props.addTodoList(res.data.data.item)
             })
@@ -26,8 +26,7 @@ class App extends React.Component {
     }
 
     restoreState = () => {
-        axios.get("https://social-network.samuraijs.com/api/1.0/todo-lists",
-            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+        api.getTodoLists()
             .then(res=> {
                 this.props.setTodolists(res.data)
             })
