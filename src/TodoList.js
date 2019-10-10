@@ -61,7 +61,16 @@ class TodoList extends React.Component {
     }
 
     changeTask = (taskId, obj) => {
-        this.props.updateTask(taskId, obj, this.props.id)
+        this.props.tasks.forEach(t => {
+            if (t.id === taskId) {
+                axios.put(`https://social-network.samuraijs.com/api/1.0/todo-lists/tasks`,{...t, ...obj},
+                    {withCredentials: true,headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+                    .then(res => {
+                        this.props.updateTask(taskId, obj, this.props.id);
+                    });
+            }
+        })
+
     }
 
     changeStatus = (taskId, status) => {
@@ -82,7 +91,6 @@ class TodoList extends React.Component {
     }
 
     onDeleteTask = (taskId) => {
-        debugger
         axios.delete(`https://social-network.samuraijs.com/api/1.0/todo-lists/tasks/${taskId}`,
             {withCredentials: true, headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
             .then (res=> {
