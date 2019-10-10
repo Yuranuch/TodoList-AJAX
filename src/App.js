@@ -22,6 +22,7 @@ class App extends React.Component {
             .then (res => {
                 this.props.addTodoList(res.data.data.item)
             })
+
     }
 
     restoreState = () => {

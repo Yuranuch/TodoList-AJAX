@@ -7,6 +7,7 @@ import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
 import {addTask, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer";
 import * as axios from "axios";
+import {api} from "./api";
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -21,19 +22,6 @@ class TodoList extends React.Component {
         localStorage.setItem("our-state" + this.props.id, stateAsString)
     }
 
-    // _restoreState = () => {
-    //     let state = {
-    //         tasks: [],
-    //         filterValue: "All",
-    //         nextTaskId: 0,
-    //     }
-    //     let stateAsString = localStorage.getItem("our-state" + this.props.id)
-    //     if (stateAsString != null) {
-    //         state = JSON.parse(stateAsString)
-    //     }
-    //     this.setState(state)
-    // }
-
     restoreState = () => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`,
             {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
@@ -44,12 +32,11 @@ class TodoList extends React.Component {
     }
 
     addItem = (newText) => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`, {title: newText},
-            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+        api.createTask(this.props.id, newText )
+
             .then (res => {
                 this.props.addTask(this.props.id, res.data.data.item)
             })
-
     }
 
     changeFilter = (newFilterValue) => {
