@@ -23,8 +23,7 @@ class TodoList extends React.Component {
     }
 
     restoreState = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/todo-lists/${this.props.id}/tasks`,
-            {withCredentials: true, headers: {"API-KEY":"2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+        api.getTodoLists(this.props.id)
             .then (res => {
                 let allTasks = res.data.items;
                 this.props.setTasks(allTasks, this.props.id);
