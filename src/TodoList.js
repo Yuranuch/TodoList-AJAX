@@ -49,8 +49,7 @@ class TodoList extends React.Component {
     changeTask = (taskId, obj) => {
         this.props.tasks.forEach(t => {
             if (t.id === taskId) {
-                axios.put(`https://social-network.samuraijs.com/api/1.0/todo-lists/tasks`,{...t, ...obj},
-                    {withCredentials: true,headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+                api.updateTask({...t, ...obj})
                     .then(res => {
                         this.props.updateTask(taskId, obj, this.props.id);
                     });
