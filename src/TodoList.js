@@ -5,7 +5,7 @@ import TodoListFooter from "./TodoListFooter";
 import TodoListTitle from "./TodoListTitle";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
-import {addTask, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer";
+import {addTask, changeTodoListTitle, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer";
 import * as axios from "axios";
 import {api} from "./api";
 
@@ -13,6 +13,7 @@ class TodoList extends React.Component {
     componentDidMount() {
         this.restoreState()
     }
+
     state = {
         filterValue: "All",
     }
@@ -34,6 +35,7 @@ class TodoList extends React.Component {
         api.createTask(this.props.id, newText )
 
             .then (res => {
+
                 this.props.addTask(this.props.id, res.data.data.item)
             })
     }
@@ -81,17 +83,31 @@ class TodoList extends React.Component {
 
     }
 
+    changeTodoListTitle = (newTodoListTitle, todolistId ) => {
+        axios.put(`https://social-network.samuraijs.com/api/1.0/todo-lists/${todolistId}`,{title:newTodoListTitle},
+            {withCredentials: true, headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+            .then (res => {
+                this.props.changeTodoListTitle(res.data.item, this.props.id)
+            })
+
+    }
+
     render = () => {
         let {tasks=[]}=this.props
         return (
             <div className="App">
                 <div className="todoList">
-                    <TodoListTitle title={this.props.title}/>
+
+                    <TodoListTitle
+                        title={this.props.title}
+                        id={this.props.id}
+                        changeTodoListTitle={this.changeTodoListTitle}
+                    />
+
                     <button onClick={this.onDeleteTodoList}>X</button>
                     <AddNewItemForm
                         addItem={this.addItem}
                     />
-
                     <TodoListTasks
                         changeTitle={this.changeTitle}
                         onDeleteTask={this.onDeleteTask}
@@ -130,6 +146,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setTasks: (tasks, todolistId) => {
             dispatch(setTasks(tasks, todolistId))
+        },
+        changeTodoListTitle: (newTodoListTitle, todolistId) => {
+            dispatch(changeTodoListTitle(newTodoListTitle, todolistId))
         }
     }
 }
