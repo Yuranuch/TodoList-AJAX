@@ -74,8 +74,7 @@ class TodoList extends React.Component {
     }
 
     onDeleteTask = (taskId) => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/todo-lists/tasks/${taskId}`,
-            {withCredentials: true, headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
+       api.deleteTask(taskId)
             .then (res=> {
                 this.props.deleteTask(taskId, this.props.id)
             })
