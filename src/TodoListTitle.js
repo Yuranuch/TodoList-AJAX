@@ -30,14 +30,14 @@ class TodoListTitle extends React.Component {
         return (
             <div className="todoList-header">
                 <h3 className="todoList-header__title">
-                    {this.state.editMode?<div>
+                    {this.state.editMode ? <div>
                             <input
                                 onBlur={this.deactivateEditMode}
                                 autoFocus={true}
                                 onChange={this.onChangeTodoListTitle}
                             />
-                    </div>
-                    :<span onClick={this.onEditMode}>{this.state.todoListTitle}</span>}
+                        </div>
+                        : <span onClick={this.onEditMode}>{this.state.todoListTitle}</span>}
                 </h3>
             </div>
         );
