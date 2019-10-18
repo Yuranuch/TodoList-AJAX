@@ -25,16 +25,16 @@ class TodoList extends React.Component {
 
     restoreState = () => {
         api.getTasks(this.props.id)
-            .then (res => {
+            .then(res => {
                 let allTasks = res.data.items;
                 this.props.setTasks(allTasks, this.props.id);
             })
     }
 
     addItem = (newText) => {
-        api.createTask(this.props.id, newText )
+        api.createTask(this.props.id, newText)
 
-            .then (res => {
+            .then(res => {
 
                 this.props.addTask(this.props.id, res.data.data.item)
             })
@@ -69,31 +69,30 @@ class TodoList extends React.Component {
     }
 
     onDeleteTodoList = () => {
-       api.deleteTodoList(this.props.id)
+        api.deleteTodoList(this.props.id)
             .then(res => {
                 this.props.deleteTodoList(this.props.id)
             })
     }
 
     onDeleteTask = (taskId) => {
-       api.deleteTask(taskId)
-            .then (res=> {
+        api.deleteTask(taskId)
+            .then(res => {
                 this.props.deleteTask(taskId, this.props.id)
             })
-
     }
 
-    changeTodoListTitle = (newTodoListTitle, todolistId ) => {
-        axios.put(`https://social-network.samuraijs.com/api/1.0/todo-lists/${todolistId}`,{title:newTodoListTitle},
+    changeTodoListTitle = (newTodoListTitle, todolistId) => {
+        axios.put(`https://social-network.samuraijs.com/api/1.0/todo-lists/${todolistId}`, {title: newTodoListTitle},
             {withCredentials: true, headers: {"API-KEY": "2712bbc4-99c4-4494-954c-6bd0564807d4"}})
-            .then (res => {
+            .then(res => {
                 this.props.changeTodoListTitle(res.data.item, this.props.id)
             })
 
     }
 
     render = () => {
-        let {tasks=[]}=this.props
+        let {tasks = []} = this.props
         return (
             <div className="App">
                 <div className="todoList">
