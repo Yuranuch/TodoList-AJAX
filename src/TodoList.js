@@ -5,6 +5,7 @@ import TodoListFooter from "./TodoListFooter";
 import TodoListTitle from "./TodoListTitle";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
+import styles from "./TodoList.module.css"
 import {addTask, changeTodoListTitle, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer";
 import * as axios from "axios";
 import {api} from "./api";
@@ -95,7 +96,7 @@ class TodoList extends React.Component {
         let {tasks = []} = this.props
         return (
             <div className="App">
-                <div className="todoList">
+                <div className={styles.todoList}>
 
                     <TodoListTitle
                         title={this.props.title}

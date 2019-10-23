@@ -1,6 +1,10 @@
 .App {
-    display: flex;
+  display: flex;
+  margin: 0 auto;
   flex-direction: row;
+  max-width: 1000px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .todoList {
@@ -15,13 +19,16 @@
 .todoList-task {
 
 }
+
 .filterActive {
   background-color: blue;
 }
+
 .error {
   border: 3px solid red;
   background-color: rosybrown;
 }
+
 .done {
   opacity: 0.5;
 }

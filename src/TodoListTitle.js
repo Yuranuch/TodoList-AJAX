@@ -29,7 +29,7 @@ class TodoListTitle extends React.Component {
     render = () => {
         return (
             <div className="todoList-header">
-                <h3 className="todoList-header__title">
+                <span className="todoList-header__title">
                     {this.state.editMode ? <div>
                             <input
                                 onBlur={this.deactivateEditMode}
@@ -38,7 +38,7 @@ class TodoListTitle extends React.Component {
                             />
                         </div>
                         : <span onClick={this.onEditMode}>{this.state.todoListTitle}</span>}
-                </h3>
+                </span>
             </div>
         );
     }
