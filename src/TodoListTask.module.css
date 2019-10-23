@@ -1,0 +1,38 @@
+
+.task {
+    text-align: left;
+    position: relative;
+    padding: 0 35px 5px 35px;
+    min-height: 30px;
+    display: block;
+    border-bottom: 1px solid darkgray;
+
+}
+.task:hover {
+    background-color: gainsboro;
+}
+.delTask {
+    position: absolute;
+    right: -10px;
+    top: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    width: 25px;
+    color: white;
+    height: 25px;
+    display: block;
+    text-align: center;
+    background-color: lightgreen;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+.delTask:hover {
+    background-color: lightcoral;
+}
+.changeTaskStatus {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    margin-top: -5px;
+}

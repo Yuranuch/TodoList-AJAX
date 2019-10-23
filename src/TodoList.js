@@ -104,25 +104,27 @@ class TodoList extends React.Component {
                         changeTodoListTitle={this.changeTodoListTitle}
                     />
 
-                    <button onClick={this.onDeleteTodoList}>X</button>
+                    <button className={styles.delButton} onClick={this.onDeleteTodoList}>X</button>
                     <AddNewItemForm
                         addItem={this.addItem}
                     />
-                    <TodoListTasks
-                        changeTitle={this.changeTitle}
-                        onDeleteTask={this.onDeleteTask}
-                        changeStatus={this.changeStatus}
-                        tasks={tasks.filter(t => {
-                            if (this.state.filterValue === "All") {
-                                return t
-                            }
-                            if (this.state.filterValue === "Completed") {
-                                return t.isDone === true
-                            }
-                            if (this.state.filterValue === "Active") {
-                                return t.isDone === false
-                            }
-                        })}/>
+                    <div className={styles.taskWrap}>
+                        <TodoListTasks
+                            changeTitle={this.changeTitle}
+                            onDeleteTask={this.onDeleteTask}
+                            changeStatus={this.changeStatus}
+                            tasks={tasks.filter(t => {
+                                if (this.state.filterValue === "All") {
+                                    return t
+                                }
+                                if (this.state.filterValue === "Completed") {
+                                    return t.isDone === true
+                                }
+                                if (this.state.filterValue === "Active") {
+                                    return t.isDone === false
+                                }
+                            })}/>
+                    </div>
                     <TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>
                 </div>
             </div>

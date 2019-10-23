@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import styles from "./TodoList.module.css"
 class TodoListTitle extends React.Component {
 
     state = {
@@ -29,7 +29,7 @@ class TodoListTitle extends React.Component {
     render = () => {
         return (
             <div className="todoList-header">
-                <span className="todoList-header__title">
+                <span className={styles.todoListHeaderTitle}>
                     {this.state.editMode ? <div>
                             <input
                                 onBlur={this.deactivateEditMode}

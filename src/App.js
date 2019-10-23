@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {addItem, addTodoList, setTodolists} from "./redux/reducer";
 import * as axios from "axios";
 import {api} from "./api";
+import styles from "./AddNewItemForm.module.css";
 
 class App extends React.Component {
 
@@ -35,13 +36,15 @@ class App extends React.Component {
     render = () => {
         let todolistElements = this.props.todolists.map(tl => <TodoList id={tl.id} title={tl.title} tasks={tl.tasks}/>)
         return (
-            <div>
-                <AddNewItemForm
-                    addItem={this.addItem}/>
+            <>
+                <div className="todoListHeader">
+                    <AddNewItemForm
+                        addItem={this.addItem}/>
+                </div>
                 <div className="App">
                     {todolistElements}
                 </div>
-            </div>
+            </>
         );
     }
 }

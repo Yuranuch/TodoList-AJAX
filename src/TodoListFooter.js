@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import styles from "./Footer.module.css"
 
 class TodoListFooter extends React.Component {
 
@@ -29,19 +30,19 @@ class TodoListFooter extends React.Component {
         let classForActive = this.props.filterValue === "Active" ? "filterActive" : ""
 
         return (
-            <div className="todoList-footer">
+            <div className={styles.todoListFooter}>
                 {!this.state.isHidden && <div>
                     <button onClick={() => {
                         this.onFilterChange("All")
-                    }} className={classForAll}>All
+                    }} className={`${classForAll} ${styles.allButton}`}>All
                     </button>
                     <button onClick={() => {
                         this.onFilterChange("Completed")
-                    }} className={classForCompleted}>Completed
+                    }} className={`${classForCompleted} ${styles.completedButton}`}>Completed
                     </button>
                     <button onClick={() => {
                         this.onFilterChange("Active")
-                    }} className={classForActive}>Active
+                    }} className={`${classForActive} ${styles.activeButton}`}>Active
                     </button>
                 </div>}
                 {!this.state.isHidden ? <span onClick={this.onHidden}>Hide</span>

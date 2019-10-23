@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import styles from "./TodoListTask.module.css"
 
 class TodoListTask extends React.Component {
 
@@ -56,21 +57,26 @@ class TodoListTask extends React.Component {
 
         let classForDone = this.props.task.isDone ? "todoList-task done" : "todoList-task"
         return (
-            <div className={classForDone}>
-                <span>{this.props.task.id}</span>
-                <input onChange={this.onChangeStatus} type="checkbox" checked={this.props.task.isDone == 2}/>
-                {this.state.editMode ?
-                    <input
-                        onBlur={this.deactivateEditMode}
-                        onChange={this.onChangeTitle}
-                        type="text"
-                        autoFocus={true}
-                        value={this.state.titleTask}
-                    />
-                    : <span onClick={this.onEditMode}>{this.state.titleTask}</span>}
-                <span> priority: {priotityTitle} </span>
-                <button onClick={this.onDeleteTask}>X</button>
+
+            <div className={styles.task}>
+                <div className={classForDone}>
+                    {/*<span>{this.props.task.id}</span>*/}
+
+                    {this.state.editMode ?
+                        <input
+                            onBlur={this.deactivateEditMode}
+                            onChange={this.onChangeTitle}
+                            type="text"
+                            autoFocus={true}
+                            value={this.state.titleTask}
+                        />
+                        : <span onClick={this.onEditMode}>{this.state.titleTask}</span>}
+                    {/*<span> priority: {priotityTitle} </span>*/}
+                    <button className={styles.delTask} onClick={this.onDeleteTask}>X</button>
+                    <input className={styles.changeTaskStatus} onChange={this.onChangeStatus} type="checkbox" checked={this.props.task.isDone == 2}/>
+                </div>
             </div>
+
         );
     }
 }

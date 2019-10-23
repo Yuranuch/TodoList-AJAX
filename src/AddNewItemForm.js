@@ -38,13 +38,13 @@ class AddNewItemForm extends React.Component {
     render = () => {
         let classForError = this.state.error ? "error" : ""
         return (
-            <div className={styles.todoListHeader}>
+
                 <div className={styles.todoListNewTaskForm}>
                     <input onKeyPress={this.onKeyPress} className={classForError} value={this.state.taskValue}
                            onChange={this.onItemChange} type="text" placeholder="Add new Item"/>
                     <button onClick={this.onAddItem}>Add</button>
                 </div>
-            </div>
+
         );
     }
 }

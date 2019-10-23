@@ -1,0 +1,28 @@
+.todoListFooter {
+
+}
+.todoListFooter button:hover {
+    background-color: cadetblue;
+}
+.allButton {
+
+    border-radius: 15px 0 0 15px;
+    height: 24px;
+    cursor: pointer;
+    border: 1px solid darkgray;
+
+}
+.completedButton {
+    border: none;
+    border-radius: 0;
+    height: 24px;
+    cursor: pointer;
+
+}
+.activeButton {
+    border: none;
+    border-radius: 0 15px 15px 0;
+    height: 24px;
+    cursor: pointer;
+
+}
