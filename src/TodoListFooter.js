@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from "react"
+import "./App.css"
 import styles from "./Footer.module.css"
 
 class TodoListFooter extends React.Component {
@@ -49,9 +49,8 @@ class TodoListFooter extends React.Component {
                     : <span onClick={this.onShow}>Show</span>}
             </div>
 
-
-        );
+        )
     }
 }
 
-export default TodoListFooter;
+export default TodoListFooter

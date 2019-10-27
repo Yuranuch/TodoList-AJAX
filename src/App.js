@@ -4,7 +4,7 @@ import TodoList from "./TodoList"
 import AddNewItemForm from "./AddNewItemForm"
 import {connect} from "react-redux"
 import {addTodoList, setTodolists} from "./redux/reducer"
-import {api} from "./api";
+import {api} from "./api"
 
 class App extends React.Component {
 
@@ -65,5 +65,5 @@ const mapDispatchToProps = (dispatch) => {
 
 const AppContainer = connect (mapStateToProps, mapDispatchToProps)(App)
 
-export default AppContainer;
+export default AppContainer
 

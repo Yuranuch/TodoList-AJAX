@@ -1,13 +1,14 @@
 .todoList {
     max-width: 230px;
     border-radius: 5px;
-    background-color:ghostwhite;
+    background-color: ghostwhite;
     padding: 10px 30px 10px 30px;
     text-align: center;
     margin: 15px;
     position: relative;
     box-shadow: 0px 0px 32px -7px #010636;
 }
+
 .todoListHeaderTitle {
     font-size: 18px;
     font-weight: bold;
@@ -15,11 +16,13 @@
     margin-bottom: 20px;
     display: block;
 }
+
 .taskWrap {
     margin-top: 20px;
     margin-bottom: 20px;
 
 }
+
 .delButton {
     border: none;
     position: absolute;
@@ -35,6 +38,7 @@
     text-align: center;
     background-color: lightgreen;
 }
+
 .delButton:hover {
 
     background-color: lightcoral;

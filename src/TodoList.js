@@ -1,14 +1,14 @@
-import React from 'react';
-import './App.css';
-import TodoListTasks from "./TodoListTasks";
-import TodoListFooter from "./TodoListFooter";
-import TodoListTitle from "./TodoListTitle";
-import AddNewItemForm from "./AddNewItemForm";
-import {connect} from "react-redux";
+import React from "react"
+import "./App.css"
+import TodoListTasks from "./TodoListTasks"
+import TodoListFooter from "./TodoListFooter"
+import TodoListTitle from "./TodoListTitle"
+import AddNewItemForm from "./AddNewItemForm"
+import {connect} from "react-redux"
 import styles from "./TodoList.module.css"
-import {addTask, changeTodoListTitle, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer";
-import * as axios from "axios";
-import {api} from "./api";
+import {addTask, changeTodoListTitle, deleteTask, deleteTodoList, setTasks, updateTask} from "./redux/reducer"
+import * as axios from "axios"
+import {api} from "./api"
 
 class TodoList extends React.Component {
     componentDidMount() {
@@ -89,7 +89,6 @@ class TodoList extends React.Component {
             .then(res => {
                 this.props.changeTodoListTitle(res.data.item, this.props.id)
             })
-
     }
 
     render = () => {
@@ -103,7 +102,6 @@ class TodoList extends React.Component {
                         id={this.props.id}
                         changeTodoListTitle={this.changeTodoListTitle}
                     />
-
                     <button className={styles.delButton} onClick={this.onDeleteTodoList}>X</button>
                     <AddNewItemForm
                         addItem={this.addItem}
@@ -128,7 +126,7 @@ class TodoList extends React.Component {
                     <TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>
                 </div>
             </div>
-        );
+        )
     }
 }
 
@@ -157,5 +155,5 @@ const mapDispatchToProps = (dispatch) => {
 
 const TodoListContainer = connect(null, mapDispatchToProps)(TodoList)
 
-export default TodoListContainer;
+export default TodoListContainer
 

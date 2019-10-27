@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from "react"
+import "./App.css"
 import styles from "./TodoListTask.module.css"
 
 class TodoListTask extends React.Component {
@@ -19,18 +19,21 @@ class TodoListTask extends React.Component {
             editMode: true
         })
     }
+
     deactivateEditMode = () => {
         this.props.changeTitle(this.props.task.id, this.state.titleTask)
         this.setState({
             editMode: false,
         })
     }
+
     onChangeTitle = (e) => {
 
         this.setState({
             titleTask: e.currentTarget.value
         })
     }
+
     onDeleteTask = () => {
         this.props.onDeleteTask(this.props.task.id)
     }
@@ -56,12 +59,12 @@ class TodoListTask extends React.Component {
         }
 
         let classForDone = this.props.task.isDone ? "todoList-task done" : "todoList-task"
+
         return (
 
             <div className={styles.task}>
                 <div className={classForDone}>
                     {/*<span>{this.props.task.id}</span>*/}
-
                     {this.state.editMode ?
                         <input
                             onBlur={this.deactivateEditMode}
@@ -73,12 +76,13 @@ class TodoListTask extends React.Component {
                         : <span onClick={this.onEditMode}>{this.state.titleTask}</span>}
                     {/*<span> priority: {priotityTitle} </span>*/}
                     <button className={styles.delTask} onClick={this.onDeleteTask}>X</button>
-                    <input className={styles.changeTaskStatus} onChange={this.onChangeStatus} type="checkbox" checked={this.props.task.isDone == 2}/>
+                    <input className={styles.changeTaskStatus} onChange={this.onChangeStatus} type="checkbox"
+                           checked={this.props.task.isDone == 2}/>
                 </div>
             </div>
 
-        );
+        )
     }
 }
 
-export default TodoListTask;
+export default TodoListTask
