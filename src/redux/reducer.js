@@ -11,7 +11,6 @@ const initialState = {
     todolists: [
         // {id: 0, title: "React", tasks:[]},
         // {id: 1, title: "HTML", tasks:[]},
-
     ]
 }
 
@@ -111,7 +110,6 @@ export const reducer = (state = initialState, action) => {
     return state
 }
 
-
 export const addTodoList = (newTodoList) => ({type: ADD_TODOLIST, newTodoList})
 export const addTask = (todoListId, newTask) => ({type: ADD_TASK, todoListId, newTask})
 export const updateTask = (taskId, obj, todolistId) => ({type: UPDATE_TASK, taskId, obj, todolistId})
@@ -119,4 +117,4 @@ export const deleteTodoList = (todolistId) => ({type: DELETE_TODOLIST, todolistI
 export const deleteTask = (taskId, todolistId) => ({type: DELETE_TASK, taskId, todolistId})
 export const setTodolists = (newTodolists) => ({type: SET_TODOLISTS, newTodolists})
 export const setTasks = (tasks, todolistId) => ({type: SET_TASKS, tasks, todolistId})
-export const changeTodoListTitle = (newTodoListTitle, todolistId) => ({type: CHANGE_TODOLIST_TITLE, newTodoListTitle, todolistId})
+export const changeTodoListTitle = (newTodoListTitle, todolistId) => ({type: CHANGE_TODOLIST_TITLE,newTodoListTitle,todolistId})

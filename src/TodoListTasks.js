@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import TodoListTask from "./TodoListTask";
+import React from "react"
+import "./App.css"
+import TodoListTask from "./TodoListTask"
 
 class TodoListTasks extends React.Component {
 
@@ -11,13 +11,14 @@ class TodoListTasks extends React.Component {
             changeTitle={this.props.changeTitle}
             task={task}
         />)
+
         return (
             <div className="todoList-tasks">
                 {tasksElement}
 
             </div>
-        );
+        )
     }
 }
 
-export default TodoListTasks;
+export default TodoListTasks

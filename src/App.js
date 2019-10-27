@@ -1,12 +1,10 @@
-import React from 'react';
-import './App.css';
-import TodoList from "./TodoList";
-import AddNewItemForm from "./AddNewItemForm";
-import {connect} from "react-redux";
-import {addItem, addTodoList, setTodolists} from "./redux/reducer";
-import * as axios from "axios";
+import React from "react"
+import "./App.css"
+import TodoList from "./TodoList"
+import AddNewItemForm from "./AddNewItemForm"
+import {connect} from "react-redux"
+import {addTodoList, setTodolists} from "./redux/reducer"
 import {api} from "./api";
-import styles from "./AddNewItemForm.module.css";
 
 class App extends React.Component {
 
@@ -23,7 +21,6 @@ class App extends React.Component {
             .then (res => {
                 this.props.addTodoList(res.data.data.item)
             })
-
     }
 
     restoreState = () => {

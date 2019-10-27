@@ -8,9 +8,11 @@
     border-bottom: 1px solid darkgray;
 
 }
+
 .task:hover {
     background-color: gainsboro;
 }
+
 .delTask {
     position: absolute;
     right: -10px;
@@ -27,9 +29,11 @@
     border: none;
     cursor: pointer;
 }
+
 .delTask:hover {
     background-color: lightcoral;
 }
+
 .changeTaskStatus {
     position: absolute;
     left: 0px;
